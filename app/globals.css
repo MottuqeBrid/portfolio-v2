@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+
+  --color-primary: #2563eb; /* vibrant blue */
+  --color-secondary: #06b6d4; /* cyan */
+  --color-accent: #facc15; /* golden yellow */
+  --color-base-100: #ffffff; /* clean white */
+  --color-base-200: #f8f9fa; /* light gray */
+  --color-neutral: #111827; /* slate dark */
+  --color-info: #0ea5e9; /* sky blue */
+  --color-success: #10b981; /* emerald */
+  --color-warning: #f97316; /* orange */
+  --color-error: #ef4444; /* red */
+  --color-text: #1e1e1e; /* readable text */
+  --color-base-content: #111827; /* slate-900 */
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+
+  --color-primary: #3b82f6; /* blue */
+  --color-secondary: #67e8f9; /* cyan light */
+  --color-accent: #fde047; /* soft yellow */
+  --color-base-100: #0f172a; /* true black */
+  --color-base-200: #1a1a1a; /* dark gray */
+  --color-neutral: #d1d5db; /* light text */
+  --color-info: #38bdf8; /* sky */
+  --color-success: #22c55e; /* green */
+  --color-warning: #fb923c; /* warm orange */
+  --color-error: #f87171; /* soft red */
+  --color-text: #f5f5f5; /* readable light */
+  --color-base-content: #e5e7eb;
+  /* gray-200 */
+}
+
+.active {
+  @apply text-accent;
+}
