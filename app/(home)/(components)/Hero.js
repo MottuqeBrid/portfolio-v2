@@ -74,7 +74,7 @@ const Hero = () => {
     <section className=" bg-gradient-to-br from-base-100 via-base-200 to-base-300 relative overflow-hidden">
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12 lg:py-20 relative z-10">
-        <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-20 items-center px-4">
+        <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-20 items-center px-2 md:px-4">
           {/* Left Side - Content */}
           <div className="space-y-8 w-full lg:w-1/2">
             {/* Greeting */}
@@ -149,32 +149,6 @@ const Hero = () => {
                 the MERN/Next.js stack.
               </motion.p>
             </motion.div>
-
-            {/* Skills Preview */}
-            {/* <motion.div
-              className="flex flex-wrap gap-3"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              {[
-                { icon: FaReact, label: "React", color: "text-blue-500" },
-                { icon: FaNodeJs, label: "Node.js", color: "text-green-500" },
-                { icon: FaCode, label: "Frontend", color: "text-purple-500" },
-                { icon: RiNextjsFill, label: "NextJS", color: "text" },
-              ].map((skill, index) => (
-                <motion.div
-                  key={skill.label}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-4 py-2 bg-base-100 rounded-full shadow-lg border border-base-300 cursor-default"
-                  data-aos="zoom-in"
-                  data-aos-delay={500 + index * 100}
-                >
-                  <skill.icon className={`text-lg ${skill.color}`} />
-                  <span className="text-sm font-medium">{skill.label}</span>
-                </motion.div>
-              ))}
-            </motion.div> */}
 
             {/* Action Buttons */}
             <motion.div
@@ -338,20 +312,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      {/* <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        data-aos="fade-up"
-        data-aos-delay="1200"
-      >
-        <div className="flex flex-col items-center gap-2 text-base-content/60">
-          <span className="text-sm font-medium">Scroll Down</span>
-          <HiOutlineArrowDown className="text-xl" />
-        </div>
-      </motion.div> */}
     </section>
   );
 };
