@@ -5,6 +5,7 @@ import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +36,9 @@ export default function Navbar() {
 
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
+            <li>
+              <Link href="/dashboard">dashboard</Link>
+            </li>
             {navItems.map((item, index) => (
               <motion.li
                 key={item.name}
@@ -113,6 +117,9 @@ export default function Navbar() {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg border border-base-300"
               >
+                <li>
+                  <Link href="/dashboard">dashboard</Link>
+                </li>
                 {navItems.map((item, index) => (
                   <motion.li
                     key={item.name}
