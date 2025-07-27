@@ -90,7 +90,7 @@ const Hero = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                👋 Hello, I'm
+                👋 Hello, I&apos;m
               </motion.p>
               <motion.h1
                 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
@@ -116,7 +116,7 @@ const Hero = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                I'm a{" "}
+                I&apos;m a{" "}
                 <span className="text-primary">
                   <Typewriter
                     options={{

@@ -60,7 +60,7 @@ export default function AboutMe() {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 viewport={{ once: true }}
               >
-                Hello! I'm{" "}
+                Hello! I&apos;m{" "}
                 <span className="font-semibold text-primary">
                   Md. Mottuqe Brid
                 </span>
@@ -93,7 +93,7 @@ export default function AboutMe() {
                 transition={{ duration: 0.5, delay: 0.7 }}
                 viewport={{ once: true }}
               >
-                You'll find me exploring new technologies, contributing to
+                You&apos;ll find me exploring new technologies, contributing to
                 open-source projects, or sharing knowledge with the developer
                 community. I believe in continuous learning and staying updated
                 with the latest industry trends.
