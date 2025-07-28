@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "date-fns": "^4.1.0",
     "mongoose": "^8.16.5",
     "motion": "^12.23.7",
     "next": "15.4.2",

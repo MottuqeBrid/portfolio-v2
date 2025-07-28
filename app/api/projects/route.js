@@ -40,3 +40,41 @@ export async function GET() {
   const projects = await ProjectModel.find({}).sort({ createdAt: -1 });
   return Response.json({ success: true, data: projects });
 }
+
+export async function PATCH(req) {
+  const body = await req.json();
+  const { _id } = body;
+  await connectDB();
+  const project = await ProjectModel.findOneAndUpdate({ _id: _id }, body, {
+    new: true,
+  });
+  if (!project) {
+    return Response.json(
+      { success: false, error: "Project not found." },
+      { status: 404 }
+    );
+  }
+  return Response.json({ success: true, data: project });
+}
+
+export async function DELETE(req) {
+  const body = await req.json();
+  const { _id } = body;
+  if (!_id) {
+    return Response.json(
+      { success: false, error: "Project ID is required." },
+      { status: 400 }
+    );
+  }
+
+  await connectDB();
+  const project = await ProjectModel.findByIdAndDelete(id);
+  if (!project) {
+    return Response.json(
+      { success: false, error: "Project not found." },
+      { status: 404 }
+    );
+  }
+
+  return Response.json({ success: true, data: project });
+}

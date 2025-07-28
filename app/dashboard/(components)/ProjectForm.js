@@ -122,7 +122,6 @@ export default function ProjectForm() {
         throw new Error(data.error || "Failed to create project");
       }
 
-      console.log("Form Data:", data);
       setSubmitMessage("Project created successfully!");
 
       //   // Reset form

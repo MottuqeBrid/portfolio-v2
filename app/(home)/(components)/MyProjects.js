@@ -59,18 +59,18 @@ export default function MyProjects() {
     });
   };
 
-  if (loading) {
-    return (
-      <section className="py-20 bg-base-100">
-        <div className="mx-auto px-2 sm:px-8 lg:px-16">
-          <div className="text-center">
-            <span className="loading loading-spinner loading-lg text-primary"></span>
-            <p className="mt-4 text-base-content/70">Loading projects...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <section className="py-20 bg-base-100">
+  //       <div className="mx-auto px-2 sm:px-8 lg:px-16">
+  //         <div className="text-center">
+  //           <span className="loading loading-spinner loading-lg text-primary"></span>
+  //           <p className="mt-4 text-base-content/70">Loading projects...</p>
+  //         </div>
+  //       </div>
+  //     </section>
+  //   );
+  // }
 
   return (
     <section className="py-20 bg-base-100">
@@ -91,8 +91,14 @@ export default function MyProjects() {
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
-        {projects.length === 0 ? (
+        {loading ? (
+          <div className="mx-auto px-2 sm:px-8 lg:px-16">
+            <div className="text-center">
+              <span className="loading loading-spinner loading-lg text-primary"></span>
+              <p className="mt-4 text-base-content/70">Loading projects...</p>
+            </div>
+          </div>
+        ) : projects.length === 0 ? (
           <div className="text-center py-20">
             <FaCode className="text-6xl text-base-content/30 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-base-content mb-2">
@@ -103,7 +109,7 @@ export default function MyProjects() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="space-y-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project._id}
@@ -111,100 +117,166 @@ export default function MyProjects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-                className="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                className="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 w-full"
               >
-                {/* Project Image */}
-                <figure className="relative h-48 overflow-hidden">
-                  {project.thumbnail ? (
-                    <Image
-                      src={project.thumbnail}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-300 hover:scale-110"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                      <FaCode className="text-4xl text-base-content/50" />
+                <div className="card-body p-0 md:p-6">
+                  <div className="flex flex-col md:flex-row gap-6">
+                    {/* Left Side - Thumbnail Image */}
+                    <div className="w-full md:w-80 shadow-xl rounded-2xl lg:w-96 flex-shrink-0">
+                      <figure className="relative h-48 md:h-64 lg:h-72 rounded-xl  overflow-hidden">
+                        {project.thumbnail ? (
+                          <Image
+                            src={project.thumbnail}
+                            alt={project.title}
+                            fill
+                            className="object-cover transition-transform duration-300 hover:scale-110"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                            <FaCode className="text-6xl text-base-content/50" />
+                          </div>
+                        )}
+
+                        {/* Status Badge */}
+                        <div className="absolute top-4 right-4">
+                          {project.isCompleted ? (
+                            <div className="badge badge-success gap-1">
+                              <FaCheckCircle className="text-xs" />
+                              Completed
+                            </div>
+                          ) : (
+                            <div className="badge badge-warning gap-1">
+                              <FaClock className="text-xs" />
+                              In Progress
+                            </div>
+                          )}
+                        </div>
+                      </figure>
                     </div>
-                  )}
 
-                  {/* Status Badge */}
-                  <div className="absolute top-4 right-4">
-                    {project.isCompleted ? (
-                      <div className="badge badge-success gap-1">
-                        <FaCheckCircle className="text-xs" />
-                        Completed
-                      </div>
-                    ) : (
-                      <div className="badge badge-warning gap-1">
-                        <FaClock className="text-xs" />
-                        In Progress
-                      </div>
-                    )}
-                  </div>
-                </figure>
-
-                <div className="card-body p-6">
-                  {/* Title */}
-                  <h3 className="card-title text-xl mb-2 line-clamp-1">
-                    {project.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-base-content/80 text-sm mb-4 line-clamp-3">
-                    {project.description}
-                  </p>
-
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {project.techStack.slice(0, 3).map((tech, techIndex) => (
-                      <div
-                        key={techIndex}
-                        className="badge badge-primary badge-sm"
+                    {/* Right Side - Project Details */}
+                    <div className="flex-1 p-6 md:p-0 space-y-4">
+                      {/* Title */}
+                      <motion.h3
+                        className="text-2xl lg:text-3xl font-bold text-base-content"
+                        whileHover={{ scale: 1.02 }}
                       >
-                        {tech}
-                      </div>
-                    ))}
-                    {project.techStack.length > 3 && (
-                      <div className="badge badge-outline badge-sm">
-                        +{project.techStack.length - 3}
-                      </div>
-                    )}
-                  </div>
+                        {project.title}
+                      </motion.h3>
 
-                  {/* Actions */}
-                  <div className="card-actions justify-between items-center">
-                    <div className="flex gap-2">
-                      {project.links?.live && (
-                        <a
-                          href={project.links.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-primary btn-sm"
-                        >
-                          <FaExternalLinkAlt className="text-xs" />
-                        </a>
-                      )}
-                      {project.links?.source && (
-                        <a
-                          href={project.links.source}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-secondary btn-sm"
-                        >
-                          <FaGithub className="text-xs" />
-                        </a>
-                      )}
+                      {/* Description */}
+                      <p className="text-base-content/80 text-lg leading-relaxed">
+                        {project.description}
+                      </p>
+
+                      {/* Tech Stack */}
+                      <div className="space-y-2">
+                        <h4 className="font-semibold text-base-content">
+                          Technologies:
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {project.techStack.map((tech, techIndex) => (
+                            <motion.div
+                              key={techIndex}
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{
+                                duration: 0.3,
+                                delay: techIndex * 0.05,
+                              }}
+                              whileHover={{ scale: 1.1 }}
+                              className="badge badge-primary"
+                            >
+                              {tech}
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Project Links */}
+                      <div className="space-y-3">
+                        <h4 className="font-semibold text-base-content">
+                          Project Links:
+                        </h4>
+                        <div className="flex flex-wrap gap-3">
+                          {project.links?.live && (
+                            <motion.a
+                              href={project.links.live}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn btn-primary"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <FaExternalLinkAlt />
+                              Live Demo
+                            </motion.a>
+                          )}
+
+                          {project.links?.source && (
+                            <motion.a
+                              href={project.links.source}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn btn-secondary"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <FaGithub />
+                              Source Code
+                            </motion.a>
+                          )}
+
+                          {project.links?.githubClient && (
+                            <motion.a
+                              href={project.links.githubClient}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn btn-accent"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <FaGithub />
+                              Client Repo
+                            </motion.a>
+                          )}
+
+                          {project.links?.githubServer && (
+                            <motion.a
+                              href={project.links.githubServer}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn btn-info"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <FaGithub />
+                              Server Repo
+                            </motion.a>
+                          )}
+
+                          {/* View Details Button */}
+                          <motion.button
+                            onClick={() => openModal(project)}
+                            className="btn btn-outline"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <FaEye />
+                            View Details
+                          </motion.button>
+                        </div>
+                      </div>
+
+                      {/* Project Metadata */}
+                      <div className="flex items-center gap-4 pt-2 text-sm text-base-content/70">
+                        <div className="flex items-center gap-1">
+                          <FaCalendarAlt />
+                          {formatDate(project.createdAt)}
+                        </div>
+                      </div>
                     </div>
-
-                    <button
-                      onClick={() => openModal(project)}
-                      className="btn btn-outline btn-sm"
-                    >
-                      <FaEye className="text-xs" />
-                      Details
-                    </button>
                   </div>
                 </div>
               </motion.div>
@@ -230,7 +302,7 @@ export default function MyProjects() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
-              <div className="sticky top-0 bg-base-100 border-b border-base-300 p-6 flex justify-between items-center">
+              <div className="sticky top-0 bg-base-100 border-b border-base-300 p-6 flex justify-between items-center z-50">
                 <div>
                   <h3 className="text-2xl font-bold text-base-content">
                     {selectedProject.title}
@@ -272,7 +344,7 @@ export default function MyProjects() {
                         {selectedProject.images.map((image, index) => (
                           <div
                             key={index}
-                            className="relative h-48 rounded-lg overflow-hidden"
+                            className="relative border border-base-300 h-48 rounded-lg overflow-hidden"
                           >
                             <Image
                               src={image}
@@ -288,24 +360,14 @@ export default function MyProjects() {
                     </div>
                   )}
 
-                {/* Description */}
+                {/* Long Description */}
                 <div className="space-y-4">
-                  <h4 className="text-lg font-semibold">Description</h4>
+                  <h4 className="text-lg font-semibold">
+                    Detailed Description
+                  </h4>
                   <p className="text-base-content/80 leading-relaxed">
                     {selectedProject.longDescription}
                   </p>
-                </div>
-
-                {/* Tech Stack */}
-                <div className="space-y-4">
-                  <h4 className="text-lg font-semibold">Technologies Used</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.techStack.map((tech, index) => (
-                      <div key={index} className="badge badge-primary">
-                        {tech}
-                      </div>
-                    ))}
-                  </div>
                 </div>
 
                 {/* Key Features */}
@@ -326,54 +388,15 @@ export default function MyProjects() {
                     </div>
                   )}
 
-                {/* Project Links */}
+                {/* Complete Tech Stack */}
                 <div className="space-y-4">
-                  <h4 className="text-lg font-semibold">Project Links</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {selectedProject.links?.live && (
-                      <a
-                        href={selectedProject.links.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-primary"
-                      >
-                        <FaExternalLinkAlt />
-                        Live Demo
-                      </a>
-                    )}
-                    {selectedProject.links?.source && (
-                      <a
-                        href={selectedProject.links.source}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-secondary"
-                      >
-                        <FaGithub />
-                        Source Code
-                      </a>
-                    )}
-                    {selectedProject.links?.githubClient && (
-                      <a
-                        href={selectedProject.links.githubClient}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-accent"
-                      >
-                        <FaGithub />
-                        Client Repository
-                      </a>
-                    )}
-                    {selectedProject.links?.githubServer && (
-                      <a
-                        href={selectedProject.links.githubServer}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-info"
-                      >
-                        <FaGithub />
-                        Server Repository
-                      </a>
-                    )}
+                  <h4 className="text-lg font-semibold">Complete Tech Stack</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.techStack.map((tech, index) => (
+                      <div key={index} className="badge badge-primary">
+                        {tech}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
