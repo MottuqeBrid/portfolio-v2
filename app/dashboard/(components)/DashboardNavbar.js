@@ -43,7 +43,6 @@ export default function DashboardNavbar() {
 
   const handleLogout = () => {
     // Add logout logic here
-    console.log("Logging out...");
   };
 
   const navigationItems = [

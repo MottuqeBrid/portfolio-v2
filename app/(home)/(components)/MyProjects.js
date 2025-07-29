@@ -32,7 +32,6 @@ export default function MyProjects() {
       const data = await response.json();
       setProjects(data.data || []);
     } catch (error) {
-      console.error("Error fetching projects:", error);
       setProjects([]);
     } finally {
       setLoading(false);

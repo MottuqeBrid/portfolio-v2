@@ -87,7 +87,6 @@ export default function DeleteBtn({ id }) {
       // 🔄 Refresh the page to show updated list
       router.refresh();
     } catch (error) {
-      console.error("Error deleting project:", error);
 
       // ❌ Error notification
       await Swal.fire({

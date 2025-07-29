@@ -58,7 +58,6 @@ export default function Footer() {
         alert("Failed to send email. Please try again.");
       }
     } catch (error) {
-      console.error("Error:", error);
       alert("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -243,7 +242,8 @@ export default function Footer() {
         <div className="divider my-12"></div>
         <div className="text-center">
           <p className="text-base-content/60">
-            © {new Date().getFullYear()} Md. Mottuqe Brid. Built with Next.js
+            &copy; {new Date().getFullYear()} Md. Mottuqe Brid. Built with
+            Next.js
           </p>
         </div>
       </div>

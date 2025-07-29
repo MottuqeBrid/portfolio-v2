@@ -9,7 +9,6 @@ export async function POST(req) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error sending email:", error);
     return Response.json(
       { success: false, message: "Failed to send email" },
       { status: 500 }
@@ -22,7 +21,6 @@ export async function GET() {
     const emails = await EmailModel.find();
     return Response.json({ success: true, emails }, { status: 200 });
   } catch (error) {
-    console.error("Error fetching emails:", error);
     return Response.json(
       { success: false, message: "Failed to fetch emails" },
       { status: 500 }

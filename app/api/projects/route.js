@@ -25,7 +25,6 @@ export async function POST(req) {
       status: 201,
     });
   } catch (err) {
-    console.error("Error creating project:", err);
     return new Response(
       JSON.stringify({ success: false, error: "Failed to create project." }),
       {

@@ -30,7 +30,6 @@ export default function EmailDashboard() {
 
       setEmails(data.emails || []);
     } catch (error) {
-      console.error("Error fetching emails:", error);
     } finally {
       setLoading(false);
     }
@@ -116,7 +115,6 @@ export default function EmailDashboard() {
         )
       );
     } catch (error) {
-      console.error("Error marking email as read:", error);
     }
   };
 

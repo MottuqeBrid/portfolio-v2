@@ -340,7 +340,6 @@ export default async function HomePage() {
       </div>
     );
   } catch (error) {
-    console.error("Error loading projects:", error);
     return (
       <div className="min-h-screen bg-base-200">
         <div className="container mx-auto p-6">
