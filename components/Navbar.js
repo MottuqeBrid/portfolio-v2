@@ -6,6 +6,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
 import Link from "next/link";
+import { FaDownload } from "react-icons/fa";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,8 +14,8 @@ export default function Navbar() {
   const navItems = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -36,9 +37,6 @@ export default function Navbar() {
 
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li>
-              <Link href="/dashboard">dashboard</Link>
-            </li>
             {navItems.map((item, index) => (
               <motion.li
                 key={item.name}
@@ -77,13 +75,18 @@ export default function Navbar() {
 
           {/* resume download button */}
           <motion.a
-            // href="/resume.pdf"
-            className="btn btn-primary ml-2"
-            // download
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            // onClick={handleDownloadResume}
+            href="https://drive.google.com/uc?export=download&id=17-G8vYiAPVq3DGHvAxJlDi3nHr0s5YSg"
+            download
+            className="btn btn-primary btn-sm ml-2 group rounded shadow-lg"
+            whileHover={{ scale: 1.02, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            Download Resume
+            <FaDownload className="group-hover:animate-bounce" />
+            Resume
           </motion.a>
 
           {/* Mobile menu button */}
@@ -117,9 +120,6 @@ export default function Navbar() {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg border border-base-300"
               >
-                <li>
-                  <Link href="/dashboard">dashboard</Link>
-                </li>
                 {navItems.map((item, index) => (
                   <motion.li
                     key={item.name}

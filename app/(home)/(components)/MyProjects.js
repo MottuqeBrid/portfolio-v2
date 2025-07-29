@@ -59,21 +59,8 @@ export default function MyProjects() {
     });
   };
 
-  // if (loading) {
-  //   return (
-  //     <section className="py-20 bg-base-100">
-  //       <div className="mx-auto px-2 sm:px-8 lg:px-16">
-  //         <div className="text-center">
-  //           <span className="loading loading-spinner loading-lg text-primary"></span>
-  //           <p className="mt-4 text-base-content/70">Loading projects...</p>
-  //         </div>
-  //       </div>
-  //     </section>
-  //   );
-  // }
-
   return (
-    <section className="py-20 bg-base-100">
+    <section id="projects" className="py-20 bg-base-100">
       <div className="mx-auto px-2 sm:px-8 lg:px-16">
         {/* Section Header */}
         <motion.div

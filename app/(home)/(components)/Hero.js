@@ -22,45 +22,46 @@ const Hero = () => {
     {
       name: "LinkedIn",
       icon: FaLinkedin,
-      url: "https://linkedin.com/in/your-profile",
+      url: "https://linkedin.com/in/md-mottuqe-brid",
       color: "hover:text-blue-600",
       bgColor: "hover:bg-blue-50",
     },
     {
       name: "GitHub",
       icon: FaGithub,
-      url: "https://github.com/your-username",
+      url: "https://github.com/MottuqeBrid",
       color: "hover:text-gray-800",
       bgColor: "hover:bg-gray-50",
     },
-    {
-      name: "Twitter",
-      icon: FaTwitter,
-      url: "https://twitter.com/your-handle",
-      color: "hover:text-blue-400",
-      bgColor: "hover:bg-blue-50",
-    },
-    {
-      name: "Instagram",
-      icon: FaInstagram,
-      url: "https://instagram.com/your-handle",
-      color: "hover:text-pink-600",
-      bgColor: "hover:bg-pink-50",
-    },
-    {
-      name: "Email",
-      icon: HiOutlineMail,
-      url: "mailto:your.email@example.com",
-      color: "hover:text-green-600",
-      bgColor: "hover:bg-green-50",
-    },
+    // {
+    //   name: "Twitter",
+    //   icon: FaTwitter,
+    //   url: "https://twitter.com/your-handle",
+    //   color: "hover:text-blue-400",
+    //   bgColor: "hover:bg-blue-50",
+    // },
+    // {
+    //   name: "Instagram",
+    //   icon: FaInstagram,
+    //   url: "https://instagram.com/your-handle",
+    //   color: "hover:text-pink-600",
+    //   bgColor: "hover:bg-pink-50",
+    // },
+    // {
+    //   name: "Email",
+    //   icon: HiOutlineMail,
+    //   url: "mottuqebrid@gmail.com",
+    //   color: "hover:text-green-600",
+    //   bgColor: "hover:bg-green-50",
+    // },
   ];
 
   const handleDownloadResume = () => {
     // Replace with your actual resume file path
     const link = document.createElement("a");
-    link.href = "/resume.pdf";
-    link.download = "Your_Name_Resume.pdf";
+    link.href =
+      "https://drive.google.com/uc?export=download&id=17-G8vYiAPVq3DGHvAxJlDi3nHr0s5YSg";
+    link.download = "Mottuqe_Resume.pdf";
     link.click();
   };
 
@@ -71,7 +72,10 @@ const Hero = () => {
   };
 
   return (
-    <section className=" bg-gradient-to-br from-base-100 via-base-200 to-base-300 relative overflow-hidden">
+    <section
+      id="home"
+      className=" bg-gradient-to-br from-base-100 via-base-200 to-base-300 relative overflow-hidden"
+    >
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12 lg:py-20 relative z-10">
         <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-20 items-center px-2 md:px-4">

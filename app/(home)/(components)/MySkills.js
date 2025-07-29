@@ -29,7 +29,7 @@ export default function MySkills() {
   ];
 
   return (
-    <section className="py-20 bg-base-100">
+    <section id="skills" className="py-20 bg-base-100">
       <div className="mx-auto px-2 sm:px-8 lg:px-16">
         {/* Section Header */}
         <motion.div

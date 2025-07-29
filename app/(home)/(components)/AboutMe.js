@@ -5,7 +5,10 @@ import { FaMapMarkerAlt, FaLightbulb } from "react-icons/fa";
 
 export default function AboutMe() {
   return (
-    <section className="py-20 bg-gradient-to-br from-base-100 to-base-200 relative overflow-hidden">
+    <section
+      id="about"
+      className="py-20 bg-gradient-to-br from-base-100 to-base-200 relative overflow-hidden"
+    >
       <div className=" mx-auto px-2 sm:px-8 lg:px-16 relative z-10">
         {/* Section Header */}
         <motion.div
