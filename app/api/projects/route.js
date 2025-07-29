@@ -56,25 +56,3 @@ export async function PATCH(req) {
   }
   return Response.json({ success: true, data: project });
 }
-
-export async function DELETE(req) {
-  const body = await req.json();
-  const { _id } = body;
-  if (!_id) {
-    return Response.json(
-      { success: false, error: "Project ID is required." },
-      { status: 400 }
-    );
-  }
-
-  await connectDB();
-  const project = await ProjectModel.findByIdAndDelete(id);
-  if (!project) {
-    return Response.json(
-      { success: false, error: "Project not found." },
-      { status: 404 }
-    );
-  }
-
-  return Response.json({ success: true, data: project });
-}

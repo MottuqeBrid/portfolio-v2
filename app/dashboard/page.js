@@ -1,6 +1,8 @@
 import { getProjects } from "@/lib/getProjects";
 import Link from "next/link";
 import { format } from "date-fns";
+import { FaGithub, FaRegEdit } from "react-icons/fa";
+import DeleteBtn from "./(components)/DeleteBtn";
 
 export default async function HomePage() {
   try {
@@ -214,7 +216,7 @@ export default async function HomePage() {
                               <Link
                                 href={project?.links?.live}
                                 target="_blank"
-                                className="btn btn-sm btn-primary"
+                                className="btn btn-sm btn-primary rounded"
                               >
                                 <svg
                                   className="w-4 h-4"
@@ -232,11 +234,31 @@ export default async function HomePage() {
                                 Live
                               </Link>
                             )}
+                            {project?.links?.githubServer && (
+                              <Link
+                                href={project.links.githubServer}
+                                target="_blank"
+                                className="btn btn-sm btn-accent rounded"
+                              >
+                                <FaGithub className="w-4 h-4 mr-1" />
+                                Github Server
+                              </Link>
+                            )}
+                            {project?.links?.githubClient && (
+                              <Link
+                                href={project.links.githubClient}
+                                target="_blank"
+                                className="btn btn-sm btn-secondary rounded"
+                              >
+                                <FaGithub className="w-4 h-4 mr-1" />
+                                Github Client
+                              </Link>
+                            )}
                             {project?.links?.source && (
                               <Link
                                 href={project.links.source}
                                 target="_blank"
-                                className="btn btn-sm btn-secondary"
+                                className="btn btn-sm btn-accent rounded"
                               >
                                 <svg
                                   className="w-4 h-4"
@@ -258,43 +280,13 @@ export default async function HomePage() {
                           <div className="flex flex-wrap gap-2">
                             <Link
                               href={`/dashboard/${project._id}`}
-                              className="btn btn-sm btn-warning"
+                              className="btn btn-sm btn-warning rounded"
                               title="Edit Project"
                             >
-                              <svg
-                                className="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                />
-                              </svg>
+                              <FaRegEdit className="w-4 h-4 mr-1" />
                               Edit
                             </Link>
-
-                            <button
-                              className="btn btn-sm btn-error"
-                              title="Delete Project"
-                            >
-                              <svg
-                                className="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                />
-                              </svg>
-                            </button>
+                            <DeleteBtn id={project?._id} />
                           </div>
                         </div>
                       </div>
@@ -326,7 +318,7 @@ export default async function HomePage() {
               <p className="text-base-content/70 mb-6">
                 Create your first project to get started with your portfolio.
               </p>
-              <Link href="/dashboard/projects/new" className="btn btn-primary">
+              <Link href="/dashboard/add-project" className="btn btn-primary">
                 <svg
                   className="w-4 h-4 mr-2"
                   fill="none"

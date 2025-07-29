@@ -127,27 +127,27 @@ const EditForm = ({ project }) => {
       setSubmitMessage("Project updated successfully!");
 
       // Reset form
-      setFormData({
-        title: "",
-        description: "",
-        longDescription: "",
-        thumbnail: "",
-        techStack: [],
-        keyFeatures: [],
-        images: [],
-        links: {
-          live: "",
-          source: "",
-          githubClient: "",
-          githubServer: "",
-        },
-        isCompleted: false,
-      });
-      setTempInputs({
-        techStack: "",
-        keyFeatures: "",
-        images: "",
-      });
+      // setFormData({
+      //   title: "",
+      //   description: "",
+      //   longDescription: "",
+      //   thumbnail: "",
+      //   techStack: [],
+      //   keyFeatures: [],
+      //   images: [],
+      //   links: {
+      //     live: "",
+      //     source: "",
+      //     githubClient: "",
+      //     githubServer: "",
+      //   },
+      //   isCompleted: false,
+      // });
+      // setTempInputs({
+      //   techStack: "",
+      //   keyFeatures: "",
+      //   images: "",
+      // });
     } catch (error) {
       setSubmitMessage("Error Updating project. Please try again.");
     } finally {
@@ -223,7 +223,13 @@ const EditForm = ({ project }) => {
                 />
               </div>
             </motion.div>
-
+            <div className="">
+              <img
+                src={formData.thumbnail}
+                alt="Project Thumbnail"
+                className="mt-2 w-full h-auto shadow-2xl rounded-lg"
+              />
+            </div>
             {/* Description */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -389,16 +395,21 @@ const EditForm = ({ project }) => {
               </div>
               <div className="flex flex-wrap gap-2 mt-2">
                 {formData.images.map((image, index) => (
-                  <div key={index} className="badge badge-accent gap-2">
-                    <FaImage className="text-xs" />
-                    Image {index + 1}
+                  <div key={index} className=" gap-2 relative">
+                    {/* <FaImage className="text-xs" />
+                    Image {index + 1} */}
                     <button
                       type="button"
                       onClick={() => removeFromArray("images", index)}
-                      className="btn btn-ghost btn-xs"
+                      className="btn btn-xs bg-transparent border-none absolute right-0 top-0 text-error"
                     >
                       <FaTimes />
                     </button>
+                    <img
+                      src={image}
+                      alt={`Project Image ${index + 1}`}
+                      className="w-16 h-16 object-cover"
+                    />
                   </div>
                 ))}
               </div>
@@ -529,12 +540,12 @@ const EditForm = ({ project }) => {
                 {isSubmitting ? (
                   <>
                     <FaSpinner className="animate-spin" />
-                    Creating Project...
+                    Updating Project...
                   </>
                 ) : (
                   <>
                     <FaSave />
-                    Create Project
+                    Update Project
                   </>
                 )}
               </button>
