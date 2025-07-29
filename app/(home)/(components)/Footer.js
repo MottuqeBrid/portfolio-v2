@@ -77,10 +77,10 @@ export default function Footer() {
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold text-base-content mb-6">
-                Let's Connect
+                Let&apos;s Connect
               </h3>
               <p className="text-base-content/70 mb-8">
-                Ready to start your next project? Get in touch and let's create
+                Ready to start your next project? Get in touch and let&apos;s create
                 something amazing together.
               </p>
             </div>
@@ -162,7 +162,7 @@ export default function Footer() {
               Email Me
             </h3>
             <p className="text-base-content/70 mb-6">
-              Send me a message directly. I'll get back to you as soon as
+              Send me a message directly. I&apos;ll get back to you as soon as
               possible.
             </p>
 
