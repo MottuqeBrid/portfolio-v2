@@ -1,13 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 
-export default function DeleteBtn({ id }) {
+export default function DeleteBtn({ fetchData, id }) {
   const [isDeleting, setIsDeleting] = useState(false);
-  const router = useRouter();
 
   const handleDelete = async () => {
     // 🎨 Beautiful confirmation dialog with SweetAlert2
@@ -84,10 +82,8 @@ export default function DeleteBtn({ id }) {
         },
       });
 
-      // 🔄 Refresh the page to show updated list
-      router.refresh();
+      fetchData();
     } catch (error) {
-
       // ❌ Error notification
       await Swal.fire({
         title: "Error!",

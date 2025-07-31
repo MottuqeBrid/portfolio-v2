@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import {
   FaHome,
@@ -17,7 +17,6 @@ import {
   FaFileAlt,
   FaVoicemail,
 } from "react-icons/fa";
-import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -25,20 +24,22 @@ import Logo from "@/components/Logo";
 
 export default function DashboardNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [notifications] = useState(3); // Example notification count
+  const [notifications, setNotifications] = useState(0); // Example notification count
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+  useEffect(() => {
+    fetchEmails();
+  }, []);
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    // Add your theme toggle logic here
-    document.documentElement.setAttribute(
-      "data-theme",
-      isDarkMode ? "light" : "dark"
-    );
+  const fetchEmails = async () => {
+    const response = await fetch("/api/send-email");
+    const data = await response.json();
+    if (data.success) {
+      const unReadEmails = data.emails.filter((email) => !email.isRead);
+      setNotifications(unReadEmails.length);
+    }
   };
 
   const handleLogout = () => {
@@ -119,55 +120,27 @@ export default function DashboardNavbar() {
 
             {/* Right Side - Search, Notifications, Theme, Profile */}
             <div className="flex items-center gap-2">
-              {/* Search */}
-              {/* <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.2 }}
-                className="hidden md:flex items-center"
-              >
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    className="input input-bordered input-sm w-48 pl-10 focus:input-primary"
-                  />
-                  <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-base-content/50" />
-                </div>
-              </motion.div> */}
-
-              {/* Theme Toggle */}
-              {/* <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={toggleTheme}
-                className="btn btn-ghost btn-circle"
-              >
-                {isDarkMode ? (
-                  <HiOutlineSun className="text-xl" />
-                ) : (
-                  <HiOutlineMoon className="text-xl" />
-                )}
-              </motion.button> */}
               <ThemeToggle />
 
               {/* Notifications */}
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn btn-ghost btn-circle relative"
-              >
-                <FaBell className="text-xl" />
-                {notifications > 0 && (
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="absolute -top-1 -right-1 bg-error text-error-content rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold"
-                  >
-                    {notifications}
-                  </motion.div>
-                )}
-              </motion.button>
+              <Link href="/dashboard/email">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="btn btn-ghost btn-circle relative"
+                >
+                  <FaBell className="text-xl" />
+                  {notifications > 0 && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="absolute -top-1 -right-1 bg-error text-error-content rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold"
+                    >
+                      {notifications}
+                    </motion.div>
+                  )}
+                </motion.div>
+              </Link>
 
               {/* Settings */}
               <motion.button
